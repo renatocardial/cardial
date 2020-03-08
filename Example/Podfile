@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'Cardial_Example' do
+  pod 'Cardial', :path => '../'
+
+  target 'Cardial_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end

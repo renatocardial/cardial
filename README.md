@@ -1,4 +1,5 @@
 # Cardial
+Framework to facilitate the development of the iOS Apps
 
 [![CI Status](https://img.shields.io/travis/Renato Cardial/Cardial.svg?style=flat)](https://travis-ci.org/Renato Cardial/Cardial)
 [![Version](https://img.shields.io/cocoapods/v/Cardial.svg?style=flat)](https://cocoapods.org/pods/Cardial)

@@ -8,7 +8,7 @@
 import Foundation
 import CommonCrypto
 
-extension String {
+public extension String {
     
     var md5: String {
         let data = Data(self.utf8)

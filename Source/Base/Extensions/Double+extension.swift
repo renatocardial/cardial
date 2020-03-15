@@ -9,7 +9,7 @@
 import Foundation
 
 
-extension Double {
+public extension Double {
     
     func toString() -> String {
         return String(self)

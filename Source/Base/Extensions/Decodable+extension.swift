@@ -7,7 +7,7 @@
 //
 import Foundation
 
-internal extension Decodable {
+public extension Decodable {
     init(jsonData: Data) throws {
         self = try JSONDecoder().decode(Self.self, from: jsonData)
     }

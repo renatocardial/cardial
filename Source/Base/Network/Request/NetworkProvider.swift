@@ -14,7 +14,7 @@ open class NetworkProvider {
     
     public typealias ResponseCallback = (success: Bool, model: AnyObject?, error: NetworkError?, statusCode: Int)
     
-    public static func request<T:Model>(endpoint: Endpoint, model:T.Type, pathJson: [String]? = nil, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ){
+    private static func sendRequest<T:Model>(endpoint: Endpoint, model:T.Type, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ){
         
         queue.maxConcurrentOperationCount = 1
         
@@ -27,7 +27,7 @@ open class NetworkProvider {
         queue.addOperation(operation)
     }
 
-    public static func request(endpoint: Endpoint, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
+    private static func sendRequest(endpoint: Endpoint, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
        
         queue.maxConcurrentOperationCount = 1
         
@@ -44,16 +44,16 @@ open class NetworkProvider {
         return (success: false, model: nil, error: errorDefault, statusCode: 0)
     }
     
-    public static func get(api: APIProtocol, path: String, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
+    public static func request(api: APIProtocol, path: String, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
         let endpoint = Endpoint(api: api, method: .GET, path: path )
-        NetworkProvider.request(endpoint: endpoint) { (response) in
+        NetworkProvider.sendRequest(endpoint: endpoint) { (response) in
             completion(response)
         }
     }
     
-    public static func get<T:Model>(api: APIProtocol, path: String, model: T.Type, pathJson: [String]? = nil, params: [String: String]? = nil, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
+    public static func request<T:Model>(api: APIProtocol, path: String, model: T.Type, params: [String: String]? = nil, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
         let endpoint = Endpoint(api: api, method: .GET, path: path, params: params )
-        NetworkProvider.request(endpoint: endpoint, model: model) { (response) in
+        NetworkProvider.sendRequest(endpoint: endpoint, model: model) { (response) in
             completion(response)
         }
     }

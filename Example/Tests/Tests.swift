@@ -3,9 +3,13 @@ import Cardial
 
 class Tests: XCTestCase {
     
+    lazy var marvelAPI: MarvelAPI = {
+        return MarvelAPI()
+    }()
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
     }
     
     override func tearDown() {
@@ -13,9 +17,27 @@ class Tests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass or not")
+    func testRequest() {
+        let expectation = self.expectation(description: "requesting")
+        
+        NetworkProvider.request(api: marvelAPI, path: MarvelPath.characters.rawValue, model: Hero.self) { (result) in
+            
+            XCTAssertTrue(result.success, "Result wasn't have success")
+            XCTAssertNotNil(result.model, "Model result shouldn't to be nil")
+            XCTAssertNil(result.error, "Error result should to be nil")
+            
+            guard let heros = result.model as? [Hero] else {
+                XCTFail("Result mode should to be an array of the Heros")
+                printAny(result)
+                return
+            }
+            
+            XCTAssertGreaterThan(heros.count, 0)
+            
+            expectation.fulfill()
+        }
+        
+         waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testPerformanceExample() {

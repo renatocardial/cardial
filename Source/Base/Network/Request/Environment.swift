@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Environment {
+public struct Environment: Equatable {
     let host: String
     let scheme: Scheme
     let port: Int?

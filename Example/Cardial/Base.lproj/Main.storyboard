@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+    <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,13 +16,112 @@
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wQc-mC-9fN">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wru-hS-AAv">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="734"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="OUW-WA-tEf">
+                                                <rect key="frame" x="0.0" y="263.33333333333331" width="414" height="207.33333333333331"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here you can test all resources that  Cardial Framework can  help you in your projects" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iJH-DT-x1B">
+                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="57.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="41c-f2-xVv">
+                                                        <rect key="frame" x="0.0" y="77.333333333333343" width="414" height="30"/>
+                                                        <state key="normal" title="Marvel App"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vin-Wy-7LI">
+                                                        <rect key="frame" x="0.0" y="127.33333333333334" width="414" height="30"/>
+                                                        <state key="normal" title="Download and Upload"/>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QQI-wH-sXu">
+                                                        <rect key="frame" x="0.0" y="177.33333333333334" width="414" height="30"/>
+                                                        <state key="normal" title="Location"/>
+                                                        <connections>
+                                                            <segue destination="yVZ-e5-qbS" kind="presentation" id="LVe-1B-kg2"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="iJH-DT-x1B" firstAttribute="top" secondItem="OUW-WA-tEf" secondAttribute="top" id="XGP-oY-Qga"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="OUW-WA-tEf" secondAttribute="trailing" id="JAc-SZ-gwD"/>
+                                            <constraint firstItem="OUW-WA-tEf" firstAttribute="centerY" secondItem="Wru-hS-AAv" secondAttribute="centerY" id="NoK-TO-WCQ"/>
+                                            <constraint firstItem="OUW-WA-tEf" firstAttribute="leading" secondItem="Wru-hS-AAv" secondAttribute="leading" id="zTH-WX-JEe"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Wru-hS-AAv" secondAttribute="bottom" id="36q-tv-D3J"/>
+                                    <constraint firstItem="Wru-hS-AAv" firstAttribute="top" secondItem="wQc-mC-9fN" secondAttribute="top" id="IQe-0D-6C3"/>
+                                    <constraint firstItem="Wru-hS-AAv" firstAttribute="leading" secondItem="wQc-mC-9fN" secondAttribute="leading" id="XPQ-XL-cmP"/>
+                                    <constraint firstItem="Wru-hS-AAv" firstAttribute="centerX" secondItem="wQc-mC-9fN" secondAttribute="centerX" id="YMf-cK-qfl"/>
+                                    <constraint firstItem="Im0-cr-PZd" firstAttribute="bottom" secondItem="Wru-hS-AAv" secondAttribute="bottom" constant="2" id="YNk-Mg-4fF"/>
+                                    <constraint firstAttribute="trailing" secondItem="Wru-hS-AAv" secondAttribute="trailing" id="oVd-Ke-2un"/>
+                                </constraints>
+                                <viewLayoutGuide key="contentLayoutGuide" id="5yb-C5-KNw"/>
+                                <viewLayoutGuide key="frameLayoutGuide" id="Im0-cr-PZd"/>
+                            </scrollView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="wQc-mC-9fN" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="CYM-pX-PHv"/>
+                            <constraint firstItem="wQc-mC-9fN" firstAttribute="width" secondItem="kh9-bI-dsS" secondAttribute="width" id="GZa-Wf-RzY"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="wQc-mC-9fN" secondAttribute="bottom" id="Qzg-ex-ZNE"/>
+                            <constraint firstItem="wQc-mC-9fN" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="YSe-2W-FtY"/>
+                            <constraint firstAttribute="trailing" secondItem="wQc-mC-9fN" secondAttribute="trailing" id="ebl-V4-MY7"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.80000000000001" y="98.50074962518741"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="VVR-QX-liv">
+            <objects>
+                <viewController id="yVZ-e5-qbS" customClass="MapViewController" customModule="Cardial_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Gvb-08-z5L"/>
+                        <viewControllerLayoutGuide type="bottom" id="AId-Cm-KIu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LE4-5e-aRY">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="716"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="VMa-4g-j65">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="275"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="JXi-h0-B8J"/>
+                                </constraints>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VMa-4g-j65" firstAttribute="top" secondItem="Gvb-08-z5L" secondAttribute="bottom" id="Snz-bH-9VW"/>
+                            <constraint firstAttribute="trailing" secondItem="VMa-4g-j65" secondAttribute="trailing" id="dhK-nY-CGS"/>
+                            <constraint firstItem="VMa-4g-j65" firstAttribute="leading" secondItem="LE4-5e-aRY" secondAttribute="leading" id="uBw-hi-AHg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mapView" destination="VMa-4g-j65" id="fyQ-jK-O5b"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vNP-nf-epr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="135" y="840.84507042253517"/>
         </scene>
     </scenes>
 </document>

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33D99DF9885AE3156D89F2A3 /* Pods_Cardial_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F7977056BA776EFB40A4B3 /* Pods_Cardial_Example.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -22,6 +21,12 @@
 		E9AD6BFE2415DD3800335084 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AD6BFD2415DD3800335084 /* Thumbnail.swift */; };
 		E9AD6BFF2415DD9200335084 /* Thumbnail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AD6BFD2415DD3800335084 /* Thumbnail.swift */; };
 		E9EACFED241E88DA00BCCDA6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EACFEC241E88DA00BCCDA6 /* APIKeys.swift */; };
+		E9EACFEE241E923D00BCCDA6 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EACFEC241E88DA00BCCDA6 /* APIKeys.swift */; };
+		E9EACFFA241EA92300BCCDA6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EACFF9241EA92300BCCDA6 /* MapViewController.swift */; };
+		E9EACFFB241EAD3A00BCCDA6 /* Pods_Cardial_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27F7977056BA776EFB40A4B3 /* Pods_Cardial_Example.framework */; };
+		E9EACFFC241EAD3A00BCCDA6 /* Pods_Cardial_Example.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 27F7977056BA776EFB40A4B3 /* Pods_Cardial_Example.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E9EACFFF241ED89900BCCDA6 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EACFFE241ED89900BCCDA6 /* MapKit.framework */; };
+		E9EAD000241ED94B00BCCDA6 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9EACFF9241EA92300BCCDA6 /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +38,20 @@
 			remoteInfo = Cardial;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E9EACFFD241EAD3A00BCCDA6 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E9EACFFC241EAD3A00BCCDA6 /* Pods_Cardial_Example.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		16EC587A91748785E0DD63A7 /* Pods-Cardial_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardial_Tests.debug.xcconfig"; path = "Target Support Files/Pods-Cardial_Tests/Pods-Cardial_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -57,6 +76,8 @@
 		E9AD6BFA2415D59B00335084 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		E9AD6BFD2415DD3800335084 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
 		E9EACFEC241E88DA00BCCDA6 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
+		E9EACFF9241EA92300BCCDA6 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		E9EACFFE241ED89900BCCDA6 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		EA14072A81D3957A7B05FCFA /* Pods-Cardial_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardial_Example.release.xcconfig"; path = "Target Support Files/Pods-Cardial_Example/Pods-Cardial_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -65,7 +86,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				33D99DF9885AE3156D89F2A3 /* Pods_Cardial_Example.framework in Frameworks */,
+				E9EACFFF241ED89900BCCDA6 /* MapKit.framework in Frameworks */,
+				E9EACFFB241EAD3A00BCCDA6 /* Pods_Cardial_Example.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -104,6 +126,7 @@
 		607FACD21AFB9204008FA782 /* Example for Cardial */ = {
 			isa = PBXGroup;
 			children = (
+				E9EACFF7241EA8FF00BCCDA6 /* Samples */,
 				E9AD6BF92415D58E00335084 /* Model */,
 				E9AD6BF52415D42C00335084 /* API */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
@@ -155,6 +178,7 @@
 		BF4CD6A15FE0C94A66180476 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E9EACFFE241ED89900BCCDA6 /* MapKit.framework */,
 				27F7977056BA776EFB40A4B3 /* Pods_Cardial_Example.framework */,
 				52FC848E189112684E1B2251 /* Pods_Cardial_Tests.framework */,
 			);
@@ -190,6 +214,22 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		E9EACFF7241EA8FF00BCCDA6 /* Samples */ = {
+			isa = PBXGroup;
+			children = (
+				E9EACFF8241EA90D00BCCDA6 /* Location */,
+			);
+			name = Samples;
+			sourceTree = "<group>";
+		};
+		E9EACFF8241EA90D00BCCDA6 /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				E9EACFF9241EA92300BCCDA6 /* MapViewController.swift */,
+			);
+			name = Location;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -202,6 +242,7 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				5477EECB78DF10D6560443D3 /* [CP] Embed Pods Frameworks */,
+				E9EACFFD241EAD3A00BCCDA6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,10 +284,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 6PBX99973H;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 6PBX99973H;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -368,6 +411,7 @@
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 				E9AD6BFB2415D59B00335084 /* Hero.swift in Sources */,
 				E9AD6BFE2415DD3800335084 /* Thumbnail.swift in Sources */,
+				E9EACFFA241EA92300BCCDA6 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,6 +420,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				607FACEC1AFB9204008FA782 /* Tests.swift in Sources */,
+				E9EAD000241ED94B00BCCDA6 /* MapViewController.swift in Sources */,
+				E9EACFEE241E923D00BCCDA6 /* APIKeys.swift in Sources */,
 				E9AD6BFF2415DD9200335084 /* Thumbnail.swift in Sources */,
 				E9AD6BF82415D49A00335084 /* MarvelAPI.swift in Sources */,
 				E9AD6BFC2415D6FA00335084 /* Hero.swift in Sources */,
@@ -516,6 +562,7 @@
 			baseConfigurationReference = C363BEC9AE08AB14A2A0B022 /* Pods-Cardial_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6PBX99973H;
 				INFOPLIST_FILE = Cardial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -532,6 +579,7 @@
 			baseConfigurationReference = EA14072A81D3957A7B05FCFA /* Pods-Cardial_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 6PBX99973H;
 				INFOPLIST_FILE = Cardial/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -547,6 +595,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 16EC587A91748785E0DD63A7 /* Pods-Cardial_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6PBX99973H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -569,6 +618,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5C6D7677973A9998263B836E /* Pods-Cardial_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = 6PBX99973H;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PLATFORM_DIR)/Developer/Library/Frameworks",
 					"$(inherited)",

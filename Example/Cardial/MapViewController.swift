@@ -13,6 +13,7 @@ import Cardial
 class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
+    var annotation = MKPointAnnotation()
     
     private lazy var location: LocationService =  {
         //You can instantiate without delegate and watch responses with closures "updatedLocation" and "requestStatus"
@@ -24,7 +25,7 @@ class MapViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupAnnotation()
         location.start()
         
 //      //If you instantiate LocationService without delegate, you can call this closures to get responses
@@ -77,16 +78,20 @@ extension MapViewController: LocationServiceDelegate {
 
 
 extension MapViewController {
+    
     func putOnMap(latitude: CLLocationDegrees, longitude: CLLocationDegrees) {
-       
         let center = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
         self.mapView.setRegion(region, animated: true)
         
-        let annotation = MKPointAnnotation()
         annotation.coordinate = center
+        if mapView.annotations.count == 0 {
+            self.mapView.addAnnotation(annotation)
+        }
+    }
+    
+    func setupAnnotation() {
         annotation.title = "You"
         annotation.subtitle = "Current location"
-        self.mapView.addAnnotation(annotation)
     }
 }

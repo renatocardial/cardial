@@ -22,3 +22,11 @@ public func printAny(_ obj: Any, file: String = #file, line: Int = #line) {
         print(obj)
     }
 }
+
+public func printAlert(_ message: String, title: String = "WARNING") {
+     print("\(title): *********** >>>>>>>>>>>>>>>> \n\n \(message) \n\n<<<<<<<<<<< ***************\n\n")
+}
+
+public func isRunningTests() -> Bool {
+    return NSClassFromString("XCTestCase") != nil
+}

@@ -8,24 +8,27 @@
 
 import Foundation
 
-public enum EnvironmentKey {
+public enum EnvironmentKey: String {
     case production, staging, testing, development, mocking
 }
 
 public class Environments {
     
     private var environments:[EnvironmentKey: Environment] = [:]
-    private static var current: EnvironmentKey?
+    private var current: EnvironmentKey
+    private static var lastCurrent: EnvironmentKey?
     
     public init(key: EnvironmentKey, environment: Environment) {
         environments[key] = environment
-        Environments.current = key
+        Environments.lastCurrent = key
+        current = key
     }
     
     public func add(key: EnvironmentKey, environment: Environment, isCurrent: Bool = false) {
         environments[key] = environment
         if isCurrent {
-            Environments.current = key
+            Environments.lastCurrent = key
+            current = key
         }
     }
     
@@ -37,17 +40,19 @@ public class Environments {
     }
     
     public func get() -> Environment {
-        if let current = Environments.current {
-            return get(key: current)
-        }
-        return environments.first!.value
+        return get(key: current)
     }
     
     public func setCurrent(key: EnvironmentKey) {
-        Environments.current = key
+        current = key
+        Environments.lastCurrent = key
+    }
+    
+    public func environmentKey() -> EnvironmentKey {
+        return current
     }
     
     public static func currentEnvironment() -> EnvironmentKey? {
-        return Environments.current
+        return Environments.lastCurrent
     }
 }

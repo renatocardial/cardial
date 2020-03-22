@@ -14,6 +14,8 @@
 		607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 607FACDE1AFB9204008FA782 /* LaunchScreen.xib */; };
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		7565E3A56060BA6AF5E69BB0 /* Pods_Cardial_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52FC848E189112684E1B2251 /* Pods_Cardial_Tests.framework */; };
+		E93710AD2427F3A8003AFF51 /* get@v1|public|characters.json in Resources */ = {isa = PBXBuildFile; fileRef = E93710AC2427F3A8003AFF51 /* get@v1|public|characters.json */; };
+		E93710B22427FAA4003AFF51 /* get@v1|public|characters.json in Resources */ = {isa = PBXBuildFile; fileRef = E93710AC2427F3A8003AFF51 /* get@v1|public|characters.json */; };
 		E9AD6BF72415D43E00335084 /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AD6BF62415D43E00335084 /* MarvelAPI.swift */; };
 		E9AD6BF82415D49A00335084 /* MarvelAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AD6BF62415D43E00335084 /* MarvelAPI.swift */; };
 		E9AD6BFB2415D59B00335084 /* Hero.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AD6BFA2415D59B00335084 /* Hero.swift */; };
@@ -72,6 +74,7 @@
 		6A8B3C27A7F5B2E23AEC655A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		9E691A301E800F87F616A6BB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		C363BEC9AE08AB14A2A0B022 /* Pods-Cardial_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cardial_Example.debug.xcconfig"; path = "Target Support Files/Pods-Cardial_Example/Pods-Cardial_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E93710AC2427F3A8003AFF51 /* get@v1|public|characters.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "get@v1|public|characters.json"; sourceTree = "<group>"; };
 		E9AD6BF62415D43E00335084 /* MarvelAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelAPI.swift; sourceTree = "<group>"; };
 		E9AD6BFA2415D59B00335084 /* Hero.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hero.swift; sourceTree = "<group>"; };
 		E9AD6BFD2415DD3800335084 /* Thumbnail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thumbnail.swift; sourceTree = "<group>"; };
@@ -126,6 +129,7 @@
 		607FACD21AFB9204008FA782 /* Example for Cardial */ = {
 			isa = PBXGroup;
 			children = (
+				E937109E2427BC29003AFF51 /* Mock */,
 				E9EACFF7241EA8FF00BCCDA6 /* Samples */,
 				E9AD6BF92415D58E00335084 /* Model */,
 				E9AD6BF52415D42C00335084 /* API */,
@@ -194,6 +198,14 @@
 				5C6D7677973A9998263B836E /* Pods-Cardial_Tests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E937109E2427BC29003AFF51 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				E93710AC2427F3A8003AFF51 /* get@v1|public|characters.json */,
+			);
+			name = Mock;
 			sourceTree = "<group>";
 		};
 		E9AD6BF52415D42C00335084 /* API */ = {
@@ -322,6 +334,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				E93710AD2427F3A8003AFF51 /* get@v1|public|characters.json in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -330,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E93710B22427FAA4003AFF51 /* get@v1|public|characters.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

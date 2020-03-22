@@ -8,37 +8,44 @@
 
 import Foundation
 
+
 internal class Network {
     
     typealias callbackCompletionResponse = (_ response:NetworkProvider.ResponseCallback) -> Void
     
     static var shared: Network = Network()
     
-    var session: URLSession
+    var session: URLSessionProtocol
+    var sessionConfig: URLSessionConfiguration?
     
-    enum Method:String {
-        case DELETE = "DELETE",
-        HEAD = "HEAD",
-        GET = "GET",
-        POST = "POST",
-        PUT = "PUT"
+    var mockSession: URLSessionProtocol = MockSession() {
+        didSet {
+            if isRunningTests() {
+                session = self.mockSession
+            }
+        }
     }
     
-    enum PostType {
-        case string
-        case json
-    }
     
     struct NoneModel: Model {
         typealias Serializable = NoneModel
     }
     
     init() {
-        let sessionConfig = URLSessionConfiguration.default
-        sessionConfig.timeoutIntervalForRequest = 5.0
-        sessionConfig.timeoutIntervalForResource = 5.0
-        
-        session = URLSession(configuration: sessionConfig)
+        session = URLSession.shared
+    }
+    
+    private func checkIfIsMock(endpoint: Endpoint) {
+        let environment = endpoint.api.environments.environmentKey()
+
+        if endpoint.isMocking {
+            session = mockSession
+            printAlert("Endpoint: \(endpoint.getFullPath() ?? "") is Mocking \nEnvironment: \(environment.rawValue)")
+        } else if (isRunningTests() && endpoint.mockInTest) || environment == .mocking {
+            session = mockSession
+        } else {
+            session = URLSession.shared
+        }
     }
     
     func request<T:Model>(endpoint: Endpoint, model: T.Type, pathJson: [String]? = nil, completion:@escaping callbackCompletionResponse){
@@ -47,6 +54,8 @@ internal class Network {
             completion(NetworkProvider.noneResponse(errorDefault: NetworkError.invalidUrl))
             return
         }
+        
+        checkIfIsMock(endpoint: endpoint)
         
         session.dataTask(with: request) { (data, response, error) in
             DispatchQueue.global().async {
@@ -92,6 +101,15 @@ internal class Network {
             callback(responseCallback)
         } else {
             if let usableData = data {
+                
+                if NetworkProvider.isDebugging() {
+                    print("Url: \(endpoint.getFullPath() ?? "")")
+                    print("Params:")
+                    print(endpoint.params ?? "")
+                    print("Response:")
+                    print(usableData.prettyJSON())
+                }
+                
                 if model is NoneModel.Type {
                     responseCallback = endpoint.api.responseObject(data: usableData, endpoint: endpoint, statusCode: httpResponse.statusCode)
                 } else {

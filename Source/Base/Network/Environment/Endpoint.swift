@@ -12,10 +12,22 @@ public struct Endpoint {
     
     var rawValue:String { return "Endpoint" }
     var api: APIProtocol
-    var method: Network.Method
+    var method: HTTPMethod
     var path: String
-    var params:[String: String]?
-    var postType: Network.PostType?
+    var params: [String: String]?
+    var postType: PostType?
+    var mockInTest: Bool = false
+    var isMocking: Bool = false
+    
+    public init(api: APIProtocol, method: HTTPMethod, path: String, params: [String: String]? = nil, postType: PostType? = nil, mockInTest: Bool = false, isMocking: Bool = false) {
+        self.api = api
+        self.method = method
+        self.path = path
+        self.params = params
+        self.postType = postType
+        self.mockInTest = mockInTest
+        self.isMocking = isMocking
+    }
     
     internal func getURL() -> URL? {
         return getUrlComponents().url

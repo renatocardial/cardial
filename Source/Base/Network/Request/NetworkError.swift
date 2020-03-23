@@ -18,6 +18,7 @@ public enum NetworkError: Error {
     case undefined
     case internalServer
     case unauthorized
+    case noConnection
     
     var customDescription: String {
         switch self {

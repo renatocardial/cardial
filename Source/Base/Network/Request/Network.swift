@@ -17,6 +17,7 @@ internal class Network {
     
     var session: URLSessionProtocol
     var sessionConfig: URLSessionConfiguration?
+    var reachability: Reachability? = try? Reachability()
     
     var mockSession: URLSessionProtocol = MockSession() {
         didSet {
@@ -26,7 +27,6 @@ internal class Network {
         }
     }
     
-    
     struct NoneModel: Model {
         typealias Serializable = NoneModel
     }
@@ -35,33 +35,57 @@ internal class Network {
         session = URLSession.shared
     }
     
-    private func checkIfIsMock(endpoint: Endpoint) {
+    private func checkIfIsMock(endpoint: Endpoint) -> Bool {
         let environment = endpoint.api.environments.environmentKey()
 
         if endpoint.isMocking {
             session = mockSession
-            printAlert("Endpoint: \(endpoint.getFullPath() ?? "") is Mocking \nEnvironment: \(environment.rawValue)")
+            printAlert("Endpoint: \(endpoint.path) is Mocking \nEnvironment: \(environment.rawValue)")
+            return true
         } else if (isRunningTests() && endpoint.mockInTest) || environment == .mocking {
             session = mockSession
+            print("Mock Network:  \(endpoint.path)")
+            return true
         } else {
             session = URLSession.shared
         }
+        
+        return false
     }
     
-    func request<T:Model>(endpoint: Endpoint, model: T.Type, pathJson: [String]? = nil, completion:@escaping callbackCompletionResponse){
+    func request<T:Model>(endpoint: Endpoint, model: T.Type, completion: @escaping callbackCompletionResponse){
         
         guard let request = getUrlRequest(endpoint: endpoint) else {
             completion(NetworkProvider.noneResponse(errorDefault: NetworkError.invalidUrl))
             return
         }
         
-        checkIfIsMock(endpoint: endpoint)
-        
-        session.dataTask(with: request) { (data, response, error) in
-            DispatchQueue.global().async {
-                self.callbackResponse(response: response, data: data, error: error, endpoint: endpoint, model: model, pathJson: pathJson, callback: completion)
+        let isMock = checkIfIsMock(endpoint: endpoint)
+        isConnected { [weak self] (connected) in
+            if connected || isMock {
+                self?.session.dataTask(with: request) { (data, response, error) in
+                    DispatchQueue.global().async {
+                        if endpoint.offlineMode, let dataToCache = data {
+                            LocalData.saveToFile(for: endpoint.fileName(), data: dataToCache, in: .cachesDirectory)
+                        }
+                        self?.callbackResponse(response: response, data: data, error: error, endpoint: endpoint, model: model, callback: completion)
+                    }
+                }.resume()
+            } else {
+                if endpoint.offlineMode && endpoint.method == .GET {
+                    if let data = LocalData.getToFile(for: endpoint.fileName(), in: .cachesDirectory) {
+                        if let url = endpoint.getURL() {
+                            let response = HTTPURLResponse(url: url, statusCode: 304, httpVersion: nil, headerFields: nil)
+                            self?.callbackResponse(response: response, data: data, error: nil, endpoint: endpoint, model: model, callback: completion)
+                            return
+                        }
+                    }
+                }
+                
+                completion(NetworkProvider.noneResponse(errorDefault: NetworkError.noConnection))
             }
-        }.resume()
+        }
+        
     }
     
     private func getUrlRequest(endpoint: Endpoint) -> URLRequest? {
@@ -85,9 +109,9 @@ internal class Network {
         return request
     }
        
-    private func callbackResponse<T:Model>(response: URLResponse?, data: Data?, error: Error?, endpoint:Endpoint, model: T.Type, pathJson: [String]? = nil, callback:@escaping callbackCompletionResponse) {
+    private func callbackResponse<T:Model>(response: URLResponse?, data: Data?, error: Error?, endpoint:Endpoint, model: T.Type, callback: @escaping callbackCompletionResponse) {
         
-        var responseCallback:NetworkProvider.ResponseCallback = NetworkProvider.noneResponse()
+        var responseCallback: NetworkProvider.ResponseCallback = NetworkProvider.noneResponse()
         
         guard let httpResponse = response as? HTTPURLResponse else {
             responseCallback.error = NetworkError.noResponse
@@ -171,6 +195,32 @@ internal class Network {
             }
         }
         return item
+    }
+    
+    func isConnected(completion: @escaping (Bool) -> Void) {
+        reachability?.whenReachable = { [weak self] value in
+            if value.connection == .wifi || value.connection == .cellular {
+                completion(true)
+            } else {
+                completion(false)
+            }
+            self?.reachability?.stopNotifier()
+        }
+        
+        reachability?.whenUnreachable = { [weak self] value in
+            if value.connection == .wifi || value.connection == .cellular {
+                completion(true)
+            } else {
+                completion(false)
+            }
+            self?.reachability?.stopNotifier()
+        }
+        
+        do {
+            try reachability?.startNotifier()
+        } catch {
+            completion(true)
+        }
     }
     
 }

@@ -34,7 +34,7 @@ class MapViewController: UIViewController {
 //        }
 //
 //        location.requestStatus { (allowed, status) in
-//            printText(allowed ? "Permissão concedida" : "Não autorizou")
+//            printText(allowed ? "Conceded Permission" : "Not allowed")
 //        }
         
     }
@@ -71,7 +71,7 @@ extension MapViewController: LocationServiceDelegate {
             self.present(alert, animated: true)
         }
         
-        printText(allowed ? "Permissão concedida" : "Não autorizou")
+        printText(allowed ? "Conceded Permission" : "Not allowed")
     }
     
 }

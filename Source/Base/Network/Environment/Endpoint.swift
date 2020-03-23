@@ -18,8 +18,9 @@ public struct Endpoint {
     var postType: PostType?
     var mockInTest: Bool = false
     var isMocking: Bool = false
+    var offlineMode: Bool = false
     
-    public init(api: APIProtocol, method: HTTPMethod, path: String, params: [String: String]? = nil, postType: PostType? = nil, mockInTest: Bool = false, isMocking: Bool = false) {
+    public init(api: APIProtocol, method: HTTPMethod, path: String, params: [String: String]? = nil, postType: PostType? = nil, mockInTest: Bool = false, isMocking: Bool = false, offlineMode: Bool = false) {
         self.api = api
         self.method = method
         self.path = path
@@ -27,6 +28,7 @@ public struct Endpoint {
         self.postType = postType
         self.mockInTest = mockInTest
         self.isMocking = isMocking
+        self.offlineMode = offlineMode
     }
     
     internal func getURL() -> URL? {
@@ -34,6 +36,7 @@ public struct Endpoint {
     }
     
     private func getPath() -> (path: String, params: [String:String]?) {
+        
         var myPath = path.first == "/" ? path : "/\(path)"
         var params: [String:String] = [:]
         if myPath.contains("?") {
@@ -132,6 +135,17 @@ public struct Endpoint {
             }
         }
         return nil
+    }
+    
+    func fileName() -> String {
+        var str = self.path
+        str += self.method.rawValue
+        str += self.params?.description ?? ""
+        return str
+            .replacingOccurrences(of: "/", with: "_")
+            .replacingOccurrences(of: "?", with: "-")
+            .replacingOccurrences(of: "=", with: "_")
+            .replacingOccurrences(of: "&", with: "-")
     }
     
 }

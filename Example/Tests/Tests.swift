@@ -27,22 +27,14 @@ class Tests: XCTestCase {
             expectation.fulfill()
         }
         
-         waitForExpectations(timeout: 5, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
     }
     
     func testRequestMock() {
         
-        let endpoint = Endpoint(
-            api: marvelAPI,
-            method: .GET ,
-            path: MarvelPath.characters.rawValue,
-            mockInTest: true
-        )
-        
         let expectation = self.expectation(description: "requesting")
         
-        NetworkProvider.endpointRequest(endpoint: endpoint, model: Hero.self) { (response) in
-        
+        NetworkProvider.request(api: marvelAPI, path: MarvelPath.characters.rawValue, model: Hero.self, mockInTest: true) { (response) in
             self.validateResultCharacters(response: response)
             if let hero = (response.model as? [Hero])?.first {
                 XCTAssertEqual(hero.name, "3-D Man Mocked")

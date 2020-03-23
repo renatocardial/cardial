@@ -7,12 +7,22 @@
 //
 
 import UIKit
+import Cardial
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NetworkProvider.setDebug(debug: true)
+        NetworkProvider.request(api: MarvelAPI(), path: MarvelPath.characters.rawValue, model: Hero.self, offlineMode: true) { (response) in
+            printAny(response)
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {

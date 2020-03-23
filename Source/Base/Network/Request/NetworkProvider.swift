@@ -46,15 +46,15 @@ open class NetworkProvider {
         return (success: false, model: nil, error: errorDefault, statusCode: 0)
     }
     
-    public static func request(api: APIProtocol, path: String, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
-        let endpoint = Endpoint(api: api, method: .GET, path: path)
+    public static func request(api: APIProtocol, method: HTTPMethod = .GET, path: String, params: [String: String]? = nil, mockInTest: Bool = false, isMocking: Bool = false, offlineMode: Bool = false, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
+        let endpoint = Endpoint(api: api, method: method, path: path, params: params, mockInTest: mockInTest, isMocking: isMocking, offlineMode: offlineMode)
         NetworkProvider.endpointRequest(endpoint: endpoint) { (response) in
             completion(response)
         }
     }
     
-    public static func request<T:Model>(api: APIProtocol, path: String, model: T.Type, params: [String: String]? = nil, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
-        let endpoint = Endpoint(api: api, method: .GET, path: path, params: params )
+    public static func request<T:Model>(api: APIProtocol, method: HTTPMethod = .GET, path: String, model: T.Type, params: [String: String]? = nil, mockInTest: Bool = false, isMocking: Bool = false, offlineMode: Bool = false, completion:@escaping (_ response: NetworkProvider.ResponseCallback) -> Void ) {
+        let endpoint = Endpoint(api: api, method: method, path: path, params: params, mockInTest: mockInTest, isMocking: isMocking, offlineMode: offlineMode)
         NetworkProvider.endpointRequest(endpoint: endpoint, model: model) { (response) in
             completion(response)
         }
